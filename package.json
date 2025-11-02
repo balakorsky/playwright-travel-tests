@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "playwright test"
-  },
+  "start": "node server.js",
+  "test": "npx playwright test",
+  "postinstall": "npx playwright install --with-deps"
+}
+,
   "devDependencies": {
     "@playwright/test": "^1.56.1"
   },
