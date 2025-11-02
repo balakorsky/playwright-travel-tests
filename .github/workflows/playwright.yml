@@ -20,6 +20,9 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test --reporter=html
 
+      - name: Check report folder
+        run: ls -la playwright-report || echo "No report folder found"
+
       - name: Upload Playwright HTML report
         if: always()
         uses: actions/upload-artifact@v4
