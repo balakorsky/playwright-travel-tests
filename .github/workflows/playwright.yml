@@ -5,6 +5,7 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -17,11 +18,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Playwright tests
+      - name: Install Playwright browsers (Chromium only)
+        run: npx playwright install chromium --with-deps
+
+      - name: Run Playwright tests (with HTML report)
         run: npx playwright test --reporter=html
 
       - name: Check report folder
-        run: ls -la playwright-report || echo "No report folder found"
+        run: |
+          echo "Checking if playwright-report folder exists..."
+          ls -la
+          ls -la playwright-report || echo "⚠️ Report folder not found!"
 
       - name: Upload Playwright HTML report
         if: always()
