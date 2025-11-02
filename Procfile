@@ -1,0 +1,4 @@
+web:
+npx
+playwright
+test
